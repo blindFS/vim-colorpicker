@@ -9,7 +9,6 @@ color_sel = gtk.ColorSelectionDialog("Vim Color Picker")
 
 if len(sys.argv) > 1:
     if gtk.gdk.Color(sys.argv[1]):
-        import ipdb; ipdb.set_trace()  # XXX BREAKPOINT
         color_sel.colorsel.set_current_color(gtk.gdk.Color(sys.argv[1]))
 
 if color_sel.run() == gtk.RESPONSE_OK:
