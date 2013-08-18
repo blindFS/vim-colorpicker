@@ -1,10 +1,10 @@
-command! -nargs=? -complete=customlist,s:cmdcomplete ColorPicker :call ReadColor(<args>)
+command! -nargs=? -complete=customlist,s:cmdcomplete ColorPicker :call s:ReadColor(<args>)
 
 function! s:cmdcomplete(A,L,P)
     return ["'rgb'","'hex'"]
 endfunction
 
-function! ReadColor(...)
+function! s:ReadColor(...)
     if !exists("g:colorpicker_path")
         let g:colorpicker_path = $HOME."/.vim/bundle/vim-colorpicker/colorpicker.py"
     endif
