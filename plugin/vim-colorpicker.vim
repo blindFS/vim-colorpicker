@@ -8,10 +8,7 @@ function! s:ReadColor(...)
     if !exists("g:colorpicker_path")
         let g:colorpicker_path = $HOME."/.vim/bundle/vim-colorpicker/colorpicker.py"
     endif
-    let s:format = ""
-    if a:0 > 0
-        let s:format = a:1
-    endif
+    let s:format = a:0 > 0? a:1 : ""
     call search('\(#[0-9A-Fa-f]\{6}\|#[0-9A-Fa-f]\{3}\|rgb([ .0-9,]\{5,})\)','b',line('.'))
     let s:oldcolor = matchstr(getline('.'),'\(#[0-9A-Fa-f]\{6}\|#[0-9A-Fa-f]\{3}\|rgb([ .0-9,]\{5,})\)',col('.')-1)
     if s:oldcolor != ""
@@ -23,7 +20,9 @@ function! s:ReadColor(...)
             let s:blue  = pyeval("str(hex(".split(s:oldcolor,'[(),]')[3]."))[2:]")
             let s:color = substitute(system(g:colorpicker_path." '#".s:red.s:green.s:blue."' rgb ".s:format),'\n','','g')
         endif
+        if s:color != ""
             execute "s/".s:oldcolor."/".s:color."/"
+        endif
     else
         let s:color = substitute(system(g:colorpicker_path." ".s:format),'\n','','g')
         execute "normal! a\<C-R>=s:color\<ESC>"
