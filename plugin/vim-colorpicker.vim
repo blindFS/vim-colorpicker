@@ -24,7 +24,7 @@ function! s:ReadColor(...)
         endif
     else
         let s:color = substitute(system(s:colorpicker_path." ".s:format),'\n','','g')
-        execute "normal! a\<C-R>=s:color\<ESC>"
+        silent execute "normal! a\<C-R>=s:color\<ESC>"
     endif
 
 endfunction
