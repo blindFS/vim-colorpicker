@@ -1,9 +1,9 @@
-command! -nargs=? -complete=customlist,s:cmdcomplete ColorPicker :call s:ReadColor(<args>)
+command! -nargs=? -complete=customlist,s:cmdcomplete ColorPicker :call s:ReadColor(<q-args>)
 
 let s:colorpicker_path = expand("<sfile>:p:h").'/colorpicker.py'
 
 function! s:cmdcomplete(A,L,P)
-    return ["'rgb'","'hex'"]
+    return ["rgb","hex"]
 endfunction
 
 function! s:ReadColor(...)
