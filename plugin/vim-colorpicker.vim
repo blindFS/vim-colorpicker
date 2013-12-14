@@ -1,6 +1,7 @@
 command! -nargs=? -complete=customlist,s:cmdcomplete ColorPicker :call s:ReadColor(<q-args>)
 
-let s:colorpicker_path = expand("<sfile>:p:h").'/colorpicker.py'
+let g:color_picker_version = get(g:, 'color_picker_version', '3')
+let s:colorpicker_path = expand("<sfile>:p:h").'/colorpicker'.g:color_picker_version.'.py'
 
 function! s:cmdcomplete(A,L,P)
     return ['rgb', 'hex']
@@ -21,7 +22,9 @@ function! s:ReadColor(...)
             let s:alpha = s:oldcolor =~ 'rgba' ? "'".split(s:oldcolor,'[(),]')[4]."'" : ''
             let s:color = system(s:colorpicker_path." '#".s:red.s:green.s:blue."' ".s:alpha.' rgb '.s:format)[:-2]
         endif
-        execute 's/'.s:oldcolor.'/'.s:color.'/'
+        if s:color != ''
+            execute 's/'.s:oldcolor.'/'.s:color.'/'
+        endif
     else
         let s:color = system(s:colorpicker_path.' '.s:format)[:-2]
         silent execute "normal! a\<C-R>=s:color\<ESC>"
