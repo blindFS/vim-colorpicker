@@ -1,6 +1,6 @@
 command! -nargs=? -complete=customlist,s:cmdcomplete ColorPicker :call s:ReadColor(<q-args>)
 
-let g:color_picker_version = get(g:, 'color_picker_version', '3')
+let g:color_picker_version = get(g:, 'color_picker_version', '2')
 let s:colorpicker_path = expand("<sfile>:p:h").'/colorpicker'.g:color_picker_version.'.py'
 
 function! s:cmdcomplete(A,L,P)
