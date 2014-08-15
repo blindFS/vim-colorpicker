@@ -1,3 +1,7 @@
+if exists('g:colorpicker') && g:colorpicker
+    finish
+endif
+
 command! -nargs=? -complete=customlist,s:cmdcomplete ColorPicker :call s:ReadColor(<q-args>)
 
 let g:color_picker_version = get(g:, 'color_picker_version', '2')
@@ -31,3 +35,5 @@ function! s:ReadColor(...)
     endif
 
 endfunction
+
+let g:colorpicker = 1

@@ -36,10 +36,10 @@ if color_sel.run() == gtk.RESPONSE_OK:
         #Format
         if len(red) == 1:
             red = "0%s" % red
-            if len(green) == 1:
-                green = "0%s" % green
-                if len(blue) == 1:
-                    blue = "0%s" % blue
+        if len(green) == 1:
+            green = "0%s" % green
+        if len(blue) == 1:
+            blue = "0%s" % blue
 
         finalcolor = '#'+red+green+blue
         print finalcolor.upper()
